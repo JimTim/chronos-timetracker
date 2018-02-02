@@ -98,12 +98,6 @@ const SettingsModal: StatelessFunctionalComponent<Props> = ({
           >
             Notifications
           </SettingsSectionLabel>
-          <SettingsSectionLabel
-            active={tab === 'Updates'}
-            onClick={() => setSettingsModalTab('Updates')}
-          >
-            Updates
-          </SettingsSectionLabel>
         </Flex>
         <Separator />
         {tab === 'General' &&
@@ -116,16 +110,6 @@ const SettingsModal: StatelessFunctionalComponent<Props> = ({
           <NotificationSettings
             settings={settings}
             setLocalDesktopSetting={setLocalDesktopSetting}
-          />
-        }
-        {tab === 'Updates' &&
-          <UpdateSettings
-            channel={settings.updateChannel}
-            setChannel={value => setLocalDesktopSetting(value, 'updateChannel')}
-            updateCheckRunning={updateCheckRunning}
-            updateAvailable={updateAvailable}
-            updateFetching={updateFetching}
-            installUpdateRequest={installUpdateRequest}
           />
         }
       </Flex>

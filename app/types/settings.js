@@ -8,7 +8,7 @@ export type Settings = any;
 // TODO type for local desktop settings
 export type LocalDesktopSettings = any;
 
-export type SettingsTab = 'General' | 'Notifications' | 'Updates';
+export type SettingsTab = 'General' | 'Notifications';
 
 export type SettingsState = {|
   +dispersion: string,

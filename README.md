@@ -1,6 +1,13 @@
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![license](https://img.shields.io/github/license/desktop/desktop.svg?style=flat-square)](https://github.com/web-pal/chronos-timetracker/blob/master/LICENSE)
 
+# HowTo start
+
+```javascript
+var s = "JavaScript syntax highlighting";
+alert(s);
+```
+
 # Chronos timetracker
 
 Desktop client for JIRA. Track time, upload automatic and manual worklogs without a hassle.
