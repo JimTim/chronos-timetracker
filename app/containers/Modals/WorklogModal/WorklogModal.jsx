@@ -54,15 +54,21 @@ class WorklogModal extends Component<Props, State> {
   componentWillReceiveProps(nextProps) {
     if (nextProps.isOpen && !this.props.isOpen) {
       setTimeout(() => {
+        this.totalSpent = '';
+        this.setState({ totalSpent : '' });
+        this.setDateAndTimeToNow();
         if (this.comment) this.comment.focus();
       }, 10);
     }
   }
 
-  handleTimeChange = label => (value) => {
-    this.setState({ [label]: value });
+  setDateAndTimeToNow = (e) => {
+    const newTime = moment();
+    const newDate = moment().format('MM/DD/YYYY');
+    console.log(newTime);
+    this.setState({ startTime: newTime });
+    this.setState({ date: newDate });
   }
-
   handleTotalSpentChange = (e) => {
     const jiraTime = e.target.value || '';
     const isValid = this.checkIfJiraTime(jiraTime);
@@ -71,6 +77,10 @@ class WorklogModal extends Component<Props, State> {
     } else {
       this.setState({ totalSpent: jiraTime, jiraTimeError: 'invalid format' });
     }
+  }
+
+  handleTimeChange = label => (value) => {
+    this.setState({ [label]: value });
   }
 
   checkIfJiraTime = (jiraTime) => {
@@ -98,6 +108,9 @@ class WorklogModal extends Component<Props, State> {
           <ModalFooter>
             <Flex row style={{ justifyContent: 'flex-end', width: '100%' }}>
               <ButtonGroup>
+                <Button appearance="primary" onClick={this.setDateAndTimeToNow}>
+                  Now
+                </Button>
                 <Button
                   appearance="primary"
                   disabled={fetching}
@@ -175,6 +188,7 @@ class WorklogModal extends Component<Props, State> {
                     primaryColor="#263958"
                   />
                 }
+                
               </CalendarIconContainer>
             </Flex>
           </Tooltip>
@@ -188,7 +202,10 @@ class WorklogModal extends Component<Props, State> {
           }
 
           {/* FROM */}
-          <Flex column style={{ width: 165 }}>
+          
+          
+          <Flex column style={{ width: 100 }}>
+    
             <InputLabel>Started</InputLabel>
             <TimePicker
               value={startTime}
@@ -198,7 +215,9 @@ class WorklogModal extends Component<Props, State> {
               format="HH:mm"
               showSecond={false}
             />
+            
           </Flex>
+       
 
           {/* COMMENT */}
           <FieldTextArea
